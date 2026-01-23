@@ -1,0 +1,1067 @@
+/* =========================================
+   1. VARIABLES Y RESET (Para que Edward edite fácil)
+   ========================================= */
+:root {
+  /* Paleta de Colores Alimentos SUPPER */
+  --primary-color: #b32025; /* Rojo Profundo */
+  --secondary-color: #d4a017; /* Dorado/Beige */
+  --accent-color: #f9f9f9; /* Fondo suave */
+  --text-dark: #1a1a1a;
+  --text-light: #ffffff;
+
+  /* Tipografía */
+  --font-main: "Montserrat", sans-serif;
+  --font-title: "Playfair Display", serif;
+  --max-width: 1200px;
+  --header-height: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  background-color: var(--accent-color);
+  line-height: 1.6;
+  margin: 0; /* Asegurado para evitar bordes blancos */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================================
+   2. UTILIDADES
+   ========================================= */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-padding {
+  padding: 80px 0;
+}
+
+/* Botones */
+.btn {
+  display: inline-block;
+  padding: 12px 30px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+/* =========================================
+   3. HEADER / NAVEGACIÓN (MEJORADO)
+   ========================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background-color: var(--primary-color); /* Vinotinto */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25); /* Sombra más difuminada y elegante */
+  transition: all 0.3s ease;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px; /* Un poco de margen lateral interno */
+}
+
+/* --- ESTILOS DEL LOGO (IMAGEN) --- */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo-img {
+  height: 60px; /* Altura controlada (deja 10px arriba y abajo) */
+  width: auto; /* El ancho se ajusta solo */
+  object-fit: contain; /* Asegura que se vea completo */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo a:hover .header-logo-img {
+  transform: scale(1.05); /* Pequeño zoom al pasar el mouse sobre el logo */
+}
+
+/* --- MENÚ DE NAVEGACIÓN --- */
+.main-nav ul {
+  display: flex;
+  gap: 35px; /* Más espacio entre items para que respire */
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav a {
+  font-size: 0.95rem;
+  font-weight: 600; /* Un poco más gordita la letra */
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 5px 0;
+  position: relative; /* Necesario para la animación de la línea */
+}
+
+/* Efecto de línea dorada al pasar el mouse (Hover) */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: var(--secondary-color); /* Dorado */
+  transition: all 0.3s ease;
+  transform: translateX(-50%); /* Centrar la animación */
+}
+
+.main-nav a:hover::after {
+  width: 100%; /* La línea crece al 100% */
+}
+
+.main-nav a:hover {
+  color: var(--secondary-color); /* El texto también se pone dorado */
+}
+
+/* --- BOTÓN DE CONTACTO (ESTILO ESPECIAL) --- */
+/* Quitamos los estilos generales de <a> para el botón y le damos los suyos */
+.main-nav a.btn-contact {
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  padding: 10px 28px;
+  border-radius: 50px;
+  color: var(--secondary-color); /* Texto dorado por defecto */
+  transition: all 0.3s ease;
+}
+
+/* Quitamos la línea de abajo para el botón (no la necesita) */
+.main-nav a.btn-contact::after {
+  display: none;
+}
+
+.main-nav a.btn-contact:hover {
+  background-color: var(--secondary-color); /* Fondo dorado */
+  color: var(--primary-color); /* Texto Vinotinto */
+  transform: translateY(-2px); /* Se levanta un poquito */
+  box-shadow: 0 5px 15px rgba(212, 160, 23, 0.4); /* Sombra dorada brillante */
+}
+
+/* --- MENÚ MÓVIL --- */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+/* =========================================
+   4. HERO SLIDER (AJUSTADO A PANTALLA RESTANTE)
+   ========================================= */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  /* TRUCO MATEMÁTICO: 100% de pantalla MENOS los 80px del menú */
+  height: calc(100vh - 80px);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Ajuste para que el contenido del slide respete la nueva altura */
+.slide-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  height: 100%;
+  padding-top: 0; /* Ya no necesitamos padding extra porque el menú no tapa */
+  padding-bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* El resto de las clases del slider (.slide, .slide-bg, etc.) déjalas igual que antes */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.8s ease-in-out,
+    visibility 0.8s;
+  z-index: 1;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.slide-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Imagen "All Food" (Slide 1) */
+.hero-product-img {
+  max-width: 90%;
+  max-height: 45vh;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+}
+
+/* --- Animaciones de Texto --- */
+.slide-text h2,
+.slide-text p,
+.slide-text .btn,
+.slide-text .badge {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active .slide-text .badge {
+  transition-delay: 0.3s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide.active .slide-text h2 {
+  transition-delay: 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide.active .slide-text p {
+  transition-delay: 0.7s;
+  opacity: 1;
+  transform: translateY(0);
+}
+.slide.active .slide-text .btn {
+  transition-delay: 0.9s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-text h2 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.slide-text p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* --- Imágenes Flotantes --- */
+.slide-image {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-element {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.8) translateX(50px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active .floating-element {
+  opacity: 1;
+  transform: scale(1) translateX(0);
+  transition-delay: 0.5s;
+}
+
+.main-img {
+  z-index: 2;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* --- Controles --- */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 10px 15px;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+.slider-btn:hover {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+}
+.prev-btn {
+  left: 20px;
+}
+.next-btn {
+  right: 20px;
+}
+
+/* =========================================
+   5. SECCIONES: NOSOTROS Y FEATURES
+   ========================================= */
+.grid-2-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.about-text h3 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.about-image img {
+  border-radius: 8px;
+  box-shadow: 10px 10px 0px var(--secondary-color);
+}
+
+/* Features Section */
+.features-section {
+  background-color: var(--primary-color);
+  padding: 80px 0;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  align-items: flex-start;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 30px;
+  border-radius: 8px;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.icon-wrapper {
+  font-size: 3.5rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.feature-card h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* =========================================
+   6. PRODUCTOS (CATÁLOGO ZIG-ZAG)
+   ========================================= */
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title h3 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+}
+
+.products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top: 40px;
+}
+
+.product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+/* Zig-Zag: Invertir filas pares */
+.product-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.product-img-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  height: 400px;
+}
+
+.product-img-col img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-row:hover .product-img-col img {
+  transform: scale(1.05);
+}
+
+.product-text-col {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-text-col h4 {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.product-text-col .subtitle {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.product-text-col p {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.specs {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+.specs li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.specs li strong {
+  color: var(--primary-color);
+}
+/* =========================================
+   7. CONTACTO (MEJORADO)
+   ========================================= */
+.contact-section {
+  background-color: #f4f4f4; /* Fondo gris muy suave */
+  /* Opcional: Un degradado sutil */
+  background: linear-gradient(135deg, #f9f9f9 0%, #e8e4db 100%);
+  padding: 100px 0;
+}
+
+.contact-wrapper {
+  display: flex;
+  background: #fff;
+  border-radius: 12px; /* Bordes más redondeados */
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1); /* Sombra profunda y elegante */
+  max-width: 1000px;
+  margin: 0 auto; /* Centrado si el contenedor es muy ancho */
+}
+
+/* --- COLUMNA IZQUIERDA (INFO) --- */
+.contact-info {
+  flex: 1;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Patrón decorativo de fondo (opcional) */
+.contact-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0PSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNiMzIwMjUiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+Cjwvc3ZnPg=="); /* Patrón de puntos sutil */
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.contact-info h3,
+.contact-info p,
+.contact-info ul {
+  position: relative;
+  z-index: 1;
+}
+
+.info-title {
+  font-size: 2rem;
+  color: var(--secondary-color); /* Dorado */
+  margin-bottom: 20px;
+}
+
+.info-text {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.info-details {
+  list-style: none;
+  padding: 0;
+}
+
+.info-details li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.info-details li i {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+}
+
+/* Decoración icono gigante */
+.info-decoration {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  opacity: 0.1;
+  z-index: 0;
+}
+.info-decoration i {
+  font-size: 15rem;
+  color: #fff;
+}
+
+/* --- COLUMNA DERECHA (FORMULARIO) --- */
+.contact-form {
+  flex: 1.5;
+  padding: 50px;
+  background-color: #fff;
+}
+
+.form-title {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+/* Fila para Nombre y Teléfono */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd; /* Borde gris suave */
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+/* Efecto al escribir (Focus) */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color); /* Se pone rojo */
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(179, 32, 37, 0.1); /* Resplandor rojo suave */
+}
+
+/* Botón de Enviar */
+.btn-block {
+  display: block;
+  width: 100%;
+  background-color: var(--secondary-color); /* Dorado */
+  color: var(--primary-color); /* Texto Rojo */
+  font-weight: 700;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-block:hover {
+  background-color: var(--primary-color); /* Se vuelve rojo */
+  color: var(--secondary-color); /* Texto dorado */
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .contact-wrapper {
+    flex-direction: column;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr; /* Una columna en móvil */
+  }
+
+  .contact-info,
+  .contact-form {
+    padding: 30px;
+  }
+}
+/* =========================================
+   8. FOOTER (ESTILO PREMIUM DARK)
+   ========================================= */
+.site-footer {
+  background-color: #111111; /* Negro suave */
+  color: #b0b0b0; /* Texto gris plata */
+  padding-top: 80px;
+  position: relative;
+  border-top: 5px solid var(--secondary-color); /* Línea dorada superior */
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr; /* La primera columna es más ancha */
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Línea separadora sutil */
+}
+
+/* --- LOGO EN FOOTER --- */
+.footer-logo {
+  width: 200px; /* Tamaño controlado */
+  height: auto;
+  margin-bottom: 25px;
+  display: block;
+  /* Si no tienes logo blanco, este filtro puede ayudar a volverlo blanco: */
+  /* filter: brightness(0) invert(1); */
+}
+
+/* --- TEXTOS --- */
+.footer-col p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Pequeña línea dorada debajo de los títulos h4 */
+.footer-col h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+
+/* --- LISTAS DE ENLACES --- */
+.footer-col ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 12px;
+}
+
+.footer-col ul li a {
+  color: #b0b0b0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Efecto hover: Texto dorado y movimiento */
+.footer-col ul li a:hover {
+  color: var(--secondary-color);
+  transform: translateX(8px);
+}
+
+/* Iconos de contacto (Email/Mapa) */
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.contact-info i {
+  color: var(--secondary-color);
+  font-size: 1.2rem;
+}
+
+/* --- REDES SOCIALES (Botones Circulares) --- */
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icon {
+  width: 45px;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: all 0.4s ease;
+}
+
+.social-icon:hover {
+  background-color: var(--secondary-color); /* Fondo Dorado */
+  color: var(--primary-color); /* Icono Rojo/Vinotinto */
+  border-color: var(--secondary-color);
+  transform: translateY(-5px); /* Flota hacia arriba */
+  box-shadow: 0 5px 15px rgba(212, 160, 23, 0.3); /* Resplandor dorado */
+}
+
+/* --- COPYRIGHT --- */
+.copyright {
+  text-align: center;
+  padding: 25px 0;
+  font-size: 0.85rem;
+  background-color: #0a0a0a; /* Fondo un poco más oscuro */
+  color: #666;
+}
+
+.copyright strong {
+  color: #fff;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr; /* Una sola columna en móvil */
+    gap: 40px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    margin: 0 auto 20px auto; /* Centrar logo */
+  }
+
+  .footer-col h4::after {
+    left: 50%;
+    transform: translateX(-50%); /* Centrar la línea decorativa */
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+
+  .contact-info p {
+    justify-content: center;
+  }
+}
+/* =========================================
+   9. RESPONSIVE (Móviles)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Menú Móvil */
+  .menu-toggle {
+    display: block;
+    width: 30px;
+  }
+  .menu-toggle .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    padding: 20px;
+    text-align: center;
+  }
+
+  .main-nav.active {
+    display: block;
+  }
+  .main-nav ul {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Ajustes Generales */
+  .grid-2-col,
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+    display: block;
+  }
+
+  .about-image {
+    margin-top: 30px;
+  }
+  .contact-info,
+  .contact-form {
+    padding: 30px;
+  }
+
+  /* Ajustes Slider Móvil */
+  .hero-slider {
+    height: auto;
+    min-height: 100vh;
+  }
+  .slide-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-content h2,
+  .slide-text h2 {
+    font-size: 2.2rem;
+  }
+  .slide-text p {
+    margin: 0 auto 30px auto;
+  }
+  .slide-image {
+    height: 300px;
+    margin-top: 30px;
+    justify-content: center;
+  }
+  .slide-image img,
+  .hero-product-img {
+    max-height: 250px;
+  }
+
+  /* Ajustes Features */
+  .features-section {
+    padding: 60px 0;
+  }
+  .feature-card {
+    padding: 30px 20px;
+  }
+
+  /* Ajustes Productos (ZigZag vertical) */
+  .product-row,
+  .product-row:nth-child(even) {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  .product-img-col {
+    width: 100%;
+    height: 300px;
+  }
+  .product-text-col p {
+    text-align: center;
+  }
+  .specs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* =========================================
+   10. CLASES PARA JAVASCRIPT
+   ========================================= */
+.site-header.scrolled {
+  background-color: rgba(27, 77, 62, 0.95);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación Icono Menú */
+.menu-toggle.is-active .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.is-active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.is-active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
