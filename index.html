@@ -42,7 +42,11 @@
           </ul>
         </nav>
 
-        <div class="menu-toggle" id="mobile-menu">
+        <div
+          class="menu-toggle"
+          id="mobile-menu"
+          aria-label="Abrir menú de navegación"
+        >
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
@@ -50,173 +54,81 @@
       </div>
     </header>
     <section id="inicio" class="hero-slider">
-      <button class="slider-btn prev-btn">&#10094;</button>
-      <button class="slider-btn next-btn">&#10095;</button>
+      <button class="slider-btn prev-btn" aria-label="Anterior">
+        &#10094;
+      </button>
+      <button class="slider-btn next-btn" aria-label="Siguiente">
+        &#10095;
+      </button>
 
-      <div class="slide active">
+      <div class="slide slide-vertical active">
         <div
           class="slide-bg"
           style="
-            background: url(&quot;img/main/Fondo-mesa-nuevo2.jpg&quot;)
+            background: url(&quot;../img/main/Fondo-mesa-nuevo2.jpg&quot;)
               no-repeat center bottom;
             background-size: cover;
           "
         ></div>
 
-        <div
-          class="container slide-content"
-          style="
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Mantiene Logo arriba / Imagen abajo */
-            align-items: center;
-            height: 100%;
-            padding-top: 0px; /* Espacio superior para el logo */
-            padding-bottom: 0;
-            overflow: visible; /* Importante para que el scale no se corte */
-          "
-        >
-          <div
-            style="
-              text-align: center;
-              width: 100%;
-              z-index: 10;
-              position: relative;
-            "
-          >
+        <div class="container slide-content">
+          <div class="slide-top-content">
             <img
-              src="img/logo-supper.png"
-              alt="Logo Supper"
-              style="
-                width: 350px;
-                max-width: 70%;
-                display: block;
-                margin: 0 auto 0 auto;
-                filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-              "
+              src="../img/logo-supper.png"
+              alt="Logo Alimentos Supper"
+              class="hero-logo-large"
             />
-
-            <!-- <div
-              class="slide-text"
-              style="opacity: 1; transform: none; margin-top: 5px"
-            >
-              <h2
-                style="
-                  font-family: &quot;Playfair Display&quot;, serif;
-                  color: #333;
-                  font-size: 2rem;
-                  margin: 0;
-                  text-shadow: 0 2px 5px rgba(255, 255, 255, 0.8);
-                  line-height: 1.1;
-                "
-              >
-                La Calidad que tu Familia Merece
-              </h2>
-              <h3
-                style="
-                  color: #444;
-                  font-size: 1rem;
-                  margin-top: 5px;
-                  font-weight: 500;
-                  text-align: center;
-                  width: 100%;
-                  display: block;
-                "
-              >
-                Tradición y sabor en cada empaque
-              </h3>
+            <!-- <div class="slide-text">
+              <h2>La Calidad que tu Familia Merece</h2>
+              <p>Tradición y sabor en cada empaque</p>
             </div> -->
           </div>
 
-          <div
-            style="
-              width: 100%;
-              text-align: center;
-              z-index: 5;
-              padding-bottom: 60px; /* ESTO SUBE LA IMAGEN 60px DEL SUELO */
-            "
-          >
-            <img
-              src="img/productos/all-food.png"
-              alt="Familia de productos Supper"
-              class="hero-product-img"
-              style="
-                max-height: 50vh;
-                width: auto;
-                margin: 0 auto;
-                display: block;
-                /* Scale agranda la imagen visualmente sin empujar el texto de arriba */
-                transform: scale(1.15);
-                transform-origin: bottom center; /* Crece hacia arriba */
-              "
-            />
+          <div class="slide-bottom-content">
+            <picture>
+              <!-- <source
+                media="(max-width: 768px)"
+                srcset="/img/productos/all-food-recortada.PNG"
+              /> -->
+
+              <img
+                src="../img/productos/all-food.png"
+                alt="Familia de productos Supper"
+                class="hero-product-img"
+              />
+            </picture>
           </div>
         </div>
       </div>
+
       <div class="slide">
         <div
           class="slide-bg"
           style="
-            background: url(&quot;img/fondos/fondo-mesa-nueva.jpg&quot;);
+            background: url(&quot;../img/fondos/fondo-mesa-nueva.jpg&quot;)
+              no-repeat center center;
             background-size: cover;
-            background-position: center;
           "
         ></div>
 
         <div class="container slide-content">
-          <div class="slide-text">
-            <span class="badge" style="background: #b32025; color: white"
-              >100% Arábica</span
-            >
-
-            <h2
-              style="color: #ffffff; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6)"
-            >
-              Calidad de Altura <br />en tu Taza
-            </h2>
-
-            <p
-              style="
-                color: #ffffff;
-                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-                font-weight: 500;
-              "
-            >
+          <div class="slide-text-col">
+            <span class="badge badge-primary">100% Arábica</span>
+            <h2>Calidad de Altura <br />en tu Taza</h2>
+            <p>
               Producido a más de 1000 metros de altitud. Granos seleccionados
               con un <strong>tostado medio</strong> para preservar un perfil
-              aromático intenso y un sabor inolvidable.
+              aromático intenso.
             </p>
-
-            <a
-              href="#contacto"
-              class="btn btn-primary"
-              style="
-                background: #b32025;
-                color: white;
-                border: none;
-                box-shadow: 0 4px 10px rgba(179, 32, 37, 0.3);
-              "
+            <a href="#contacto" class="btn btn-primary shadow-red"
+              >Solicitar Pedido</a
             >
-              Solicitar Pedido
-            </a>
           </div>
-
-          <div
-            class="slide-image"
-            style="display: flex; justify-content: center; align-items: center"
-          >
+          <div class="slide-image-col">
             <img
-              src="img/cafe/presentaciones-cafe.PNG"
-              alt="Presentaciones Café Supper"
-              style="
-                height: auto;
-                max-height: 420px; /* Tamaño controlado */
-                width: auto;
-                display: block;
-                /* Sombra para separarlo del fondo */
-                filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.3));
-                transform: scale(1.1);
-              "
+              src="../img/cafe/presentaciones-cafe.PNG"
+              alt="Presentaciones Café"
+              class="slide-product-img"
             />
           </div>
         </div>
@@ -226,61 +138,27 @@
         <div
           class="slide-bg"
           style="
-            background: url(&quot;img/fondos/fondo-arroz.jpg&quot;); /* Asegúrate que la ruta sea correcta */
+            background: url(&quot;../img/fondos/fondo-arroz.jpg&quot;) no-repeat
+              center center;
             background-size: cover;
-            background-position: center;
           "
         ></div>
 
         <div class="container slide-content">
-          <div class="slide-text">
-            <span class="badge" style="background: #003da5; color: white"
-              >Calidad Superior</span
-            >
-
-            <h2
-              style="color: #ffffff; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6)"
-            >
-              Nutrición que <br />Rinde Más
-            </h2>
-
-            <p
-              style="
-                color: #ffffff;
-                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-                font-weight: 500;
-              "
-            >
+          <div class="slide-text-col">
+            <span class="badge badge-blue">Calidad Superior</span>
+            <h2>Nutrición que <br />Rinde Más</h2>
+            <p>
               Arroz 90% granos enteros. Blancura impecable y rendimiento
-              garantizado en cada preparación.
+              garantizado.
             </p>
-
-            <a
-              href="#productos"
-              class="btn btn-primary"
-              style="background: #003da5; color: white; border: none"
-            >
-              Ver Detalles
-            </a>
+            <a href="#productos" class="btn btn-blue">Ver Detalles</a>
           </div>
-
-          <div
-            class="slide-image"
-            style="display: flex; justify-content: center; align-items: center"
-          >
+          <div class="slide-image-col">
             <img
               src="../img/productos/arroz-tipo.png"
-              alt="Arroz Supper Tipo 1"
-              style="
-                height: auto;
-                max-height: 480px; /* Tamaño ideal para que luzca imponente */
-                width: auto;
-                display: block;
-                filter: drop-shadow(
-                  0 15px 25px rgba(0, 0, 0, 0.3)
-                ); /* Sombra realista */
-                transform: scale(1.1);
-              "
+              alt="Arroz Supper"
+              class="slide-product-img"
             />
           </div>
         </div>
@@ -290,184 +168,91 @@
         <div
           class="slide-bg"
           style="
-            background: url(&quot;img/fondos/fondo-aceite.jpg&quot;);
+            background: url(&quot;../img/fondos/fondo-aceite.jpg&quot;)
+              no-repeat center center;
             background-size: cover;
-            background-position: center;
           "
         ></div>
 
         <div class="container slide-content">
-          <div class="slide-text">
-            <span class="badge" style="background: #d4a017; color: white"
-              >100% Vegetal</span
-            >
-
-            <h2
-              style="color: #ffffff; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6)"
-            >
-              El Toque Dorado <br />de tu Cocina
-            </h2>
-
-            <p
-              style="
-                color: #f9f9f9;
-                font-weight: 500;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-              "
-            >
+          <div class="slide-text-col">
+            <span class="badge badge-gold">100% Vegetal</span>
+            <h2>El Toque Dorado <br />de tu Cocina</h2>
+            <p class="text-light">
               Aceite puro de soja con sabor neutro y ligero. Realza el gusto
-              natural de tus comidas sin alterarlo. Ideal para freír y aderezar.
+              natural sin alterarlo.
             </p>
-
-            <a
-              href="#productos"
-              class="btn btn-primary"
-              style="
-                background: #d4a017;
-                color: white;
-                border: none;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-              "
+            <a href="#productos" class="btn btn-gold shadow-gold"
+              >Descubrir Más</a
             >
-              Descubrir Más
-            </a>
           </div>
-
-          <div
-            class="slide-image"
-            style="display: flex; justify-content: center; align-items: center"
-          >
+          <div class="slide-image-col">
             <img
               src="../img/productos/aceite.png"
-              alt="Aceite Vegetal Supper"
-              style="
-                height: auto;
-                max-height: 500px;
-                width: auto;
-                display: block;
-                /* Sombra dorada intensa para que resalte del fondo */
-                filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.5));
-                transform: scale(1.05);
-              "
+              alt="Aceite Supper"
+              class="slide-product-img"
             />
           </div>
         </div>
       </div>
+
       <div class="slide">
         <div
           class="slide-bg"
           style="
-            background: url(&quot;img/fondos/fondo-caraotas.jpg&quot;);
+            background: url(&quot;../img/fondos/fondo-caraotas.jpg&quot;)
+              no-repeat center center;
             background-size: cover;
-            background-position: center;
           "
         ></div>
 
         <div class="container slide-content">
-          <div class="slide-text">
-            <span class="badge" style="background: #006837; color: white"
-              >Granos Seleccionados</span
-            >
-
-            <h2 style="color: #222">El Pilar de <br />tu Gastronomía</h2>
-
-            <p style="color: #333; font-weight: 500">
+          <div class="slide-text-col">
+            <span class="badge badge-green">Granos Seleccionados</span>
+            <h2 class="text-dark">El Pilar de <br />tu Gastronomía</h2>
+            <p class="text-dark-medium">
               Las Caraotas Negras Supper ofrecen la calidad y consistencia que
-              tu hogar necesita. El sabor de la tradición en cada grano.
+              tu hogar necesita.
             </p>
-
-            <a
-              href="#productos"
-              class="btn btn-primary"
-              style="background: #006837; color: white; border: none"
-            >
-              Ver Detalles
-            </a>
+            <a href="#productos" class="btn btn-green">Ver Detalles</a>
           </div>
-
-          <div
-            class="slide-image"
-            style="display: flex; justify-content: center; align-items: center"
-          >
+          <div class="slide-image-col">
             <img
               src="../img/productos/caraotas.png"
-              alt="Caraotas Negras Supper"
-              style="
-                height: auto;
-                max-height: 480px;
-                width: auto;
-                display: block;
-                /* Sombra fuerte para que se destaque sobre la textura rugosa del fondo */
-                filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.4));
-                transform: scale(1.1);
-              "
+              alt="Caraotas Supper"
+              class="slide-product-img"
             />
           </div>
         </div>
       </div>
+
       <div class="slide">
         <div
           class="slide-bg"
           style="
-            background: url(&quot;img/fondos/fondo-cafe-moca.jpg&quot;);
+            background: url(&quot;../img/fondos/fondo-cafe-moca.jpg&quot;)
+              no-repeat center center;
             background-size: cover;
-            background-position: center;
           "
         ></div>
 
         <div class="container slide-content">
-          <div class="slide-text">
-            <span class="badge" style="background: #4b2e2a; color: white"
-              >Café & Cacao</span
-            >
-
-            <h2
-              style="color: #ffffff; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8)"
-            >
-              La Fusión Perfecta: <br />Energía y Sabor
-            </h2>
-
-            <p
-              style="
-                color: #f0f0f0;
-                font-weight: 500;
-                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-              "
-            >
+          <div class="slide-text-col">
+            <span class="badge badge-coffee">Café & Cacao</span>
+            <h2>La Fusión Perfecta: <br />Energía y Sabor</h2>
+            <p class="text-light-medium">
               Mezcla conocida como MOCA. Una combinación deliciosa que une la
-              intensidad de la cafeína con el aroma inconfundible del chocolate.
+              intensidad de la cafeína con el chocolate.
             </p>
-
-            <a
-              href="#productos"
-              class="btn btn-primary"
-              style="
-                background: #4b2e2a;
-                color: white;
-                border: none;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-              "
+            <a href="#productos" class="btn btn-coffee shadow-dark"
+              >Ver Detalles</a
             >
-              Ver Detalles
-            </a>
           </div>
-
-          <div
-            class="slide-image"
-            style="display: flex; justify-content: center; align-items: center"
-          >
+          <div class="slide-image-col">
             <img
               src="../img/productos/cafe-cacao-200gr.png"
-              alt="Café con Cacao Supper Moca"
-              style="
-                height: auto;
-                max-height: 480px;
-                width: auto;
-                display: block;
-                /* Sombra oscura difuminada para dar profundidad en ambiente oscuro */
-                filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.6));
-                transform: scale(1.1);
-              "
+              alt="Café Moca"
+              class="slide-product-img"
             />
           </div>
         </div>
@@ -490,12 +275,12 @@
             Nuestra promesa es simple: granos seleccionados, procesos cuidados y
             un sabor que perdura.
           </p>
-          <a href="#contacto" class="link-arrow"
-            >Quiero ser distribuidor &rarr;</a
-          >
+          <a href="#contacto" class="link-arrow">
+            Quiero ser distribuidor &rarr;
+          </a>
         </div>
         <div class="about-image">
-          <img src="img/logo-supper.png" alt="Logo Alimentos Supper" />
+          <img src="../img/logo-supper.png" alt="Logo Alimentos Supper" />
         </div>
       </div>
     </section>
@@ -550,7 +335,7 @@
           <article class="product-row">
             <div class="product-img-col">
               <img
-                src="/img/cafe/presentaciones-cafe.PNG"
+                src="../img/cafe/presentaciones-cafe.PNG"
                 alt="Café Supper Gourmet 200g"
               />
             </div>
@@ -574,7 +359,7 @@
           <article class="product-row">
             <div class="product-img-col">
               <img
-                src="/img/productos/cafe-cacao-200gr.png"
+                src="../img/productos/cafe-cacao-200gr.png"
                 alt="Café con Cacao Supper Moca"
               />
             </div>
@@ -597,7 +382,7 @@
           <article class="product-row">
             <div class="product-img-col">
               <img
-                src="/img/productos/arroz-tipo.png"
+                src="../img/productos/arroz-tipo.png"
                 alt="Arroz Supper Tipo 1"
               />
             </div>
@@ -620,7 +405,7 @@
           <article class="product-row">
             <div class="product-img-col">
               <img
-                src="/img/productos/caraotas.png"
+                src="../img/productos/caraotas.png"
                 alt="Caraotas Negras Supper"
               />
             </div>
@@ -643,7 +428,7 @@
           <article class="product-row">
             <div class="product-img-col">
               <img
-                src="/img/productos/azucar-refinada.png"
+                src="../img/productos/azucar-refinada.png"
                 alt="Azúcar Supper Refinada"
               />
             </div>
@@ -666,7 +451,7 @@
           <article class="product-row">
             <div class="product-img-col">
               <img
-                src="/img/productos/aceite.png"
+                src="../img/productos/aceite.png"
                 alt="Aceite de Soja Supper"
               />
             </div>
@@ -704,7 +489,7 @@
               </li>
               <li>
                 <i class="bx bxs-envelope"></i>
-                <span><strong>Email:</strong> ventas@alimentossupper.com</span>
+                <span><strong>Email:</strong> info.gruporps.com</span>
               </li>
               <li>
                 <i class="bx bxs-map"></i>
@@ -800,7 +585,7 @@
         <div class="footer-col social-col">
           <h4>Contáctanos</h4>
           <div class="contact-info">
-            <p><i class="bx bxs-envelope"></i> ventas@alimentossupper.com</p>
+            <p><i class="bx bxs-envelope"></i> info.gruporps.com</p>
             <p><i class="bx bxs-map"></i> Venezuela</p>
           </div>
 
