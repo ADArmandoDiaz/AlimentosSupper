@@ -502,31 +502,28 @@
             </div>
           </div>
 
-          <div class="contact-form">
+         <div class="contact-form">
             <h3 class="form-title">Envíanos un Mensaje</h3>
 
             <form
               action="https://formsubmit.co/armandojesusdiazpizarro@gmail.com"
               method="POST"
             >
+              <input type="hidden" name="_template" value="table" />
+              
+              <input type="hidden" name="_subject" value="📦 Nuevo Pedido - Web Supper" />
+              
+              <input type="hidden" name="_next" value="https://alimentossupper.netlify.app/" />
+              
               <input type="hidden" name="_captcha" value="false" />
-              <input
-                type="hidden"
-                name="_subject"
-                value="Nuevo Pedido Web - Alimentos Supper"
-              />
-              <input
-                type="hidden"
-                name="_next"
-                value="https://alimentossupper.netlify.app/"
-              />
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="nombre">Nombre / Empresa</label>
                   <input
                     type="text"
                     id="nombre"
-                    name="nombre"
+                    name="Cliente"
                     placeholder="Tu nombre"
                     required
                   />
@@ -536,7 +533,7 @@
                   <input
                     type="tel"
                     id="telefono"
-                    name="telefono"
+                    name="Teléfono"
                     placeholder="+58..."
                   />
                 </div>
@@ -547,7 +544,7 @@
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  name="Email"
                   placeholder="ejemplo@correo.com"
                   required
                 />
@@ -557,7 +554,7 @@
                 <label for="mensaje">Solicitud de Pedido</label>
                 <textarea
                   id="mensaje"
-                  name="mensaje"
+                  name="Detalles del Pedido"
                   rows="4"
                   placeholder="Escribe aquí los detalles de tu solicitud..."
                   required
@@ -569,7 +566,6 @@
               </button>
             </form>
           </div>
-        </div>
       </div>
     </section>
 
