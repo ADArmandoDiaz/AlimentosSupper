@@ -12,13 +12,18 @@
    ========================================= */
 :root {
   /* Paleta de Colores Alimentos SUPPER */
-  --primary-color: #ff0000; /* Rojo Intenso de las gotas del logo */
+
+  /* CAMBIO AQUÍ: Usamos un rojo carmesí profundo. 
+     Este tono es elegante y permite que las gotas rojas brillantes (#ff0000) 
+     del logo destaquen por contraste sobre el navbar. */
+  --primary-color: #a61c22; /* Rojo Carmesí Profundo (Institucional) */
+
   --secondary-color: #d4a017; /* Dorado/Beige */
   --accent-color: #f9f9f9; /* Fondo suave */
 
   /* Textos */
   --text-dark: #1a1a1a;
-  --text-light: #ffffff;
+  --text-light: #ffffff; /* El texto sobre el navbar rojo será blanco */
 
   /* Tipografía */
   --font-main: "Montserrat", sans-serif;
