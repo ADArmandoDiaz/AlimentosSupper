@@ -1359,3 +1359,364 @@ h6 {
     transform: translateX(0) scale(1.05); /* Cambiamos desplazamiento por zoom sutil en móvil */
   }
 }
+/* =============================================================
+   ESTILOS UNIFICADOS: PÁGINA SERVICIOS (MAQUILA, HORECA, PROCESOS)
+   ============================================================= */
+
+/* --- 1. HERO BREADCRUMB (Estilo Maquila) --- */
+.page-hero.breadcrumb-style {
+  width: 100%;
+  height: 50vh;
+  min-height: 400px;
+  /* Flexbox para centrar el CONTENEDOR verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  background-image: url("../img/fondos/fondo-cafe-moca.jpg"); /* Verifica tu ruta */
+  background-size: cover;
+  background-position: center;
+  margin-top: 0;
+
+  /* IMPORTANTE: Permite que el icono salga del div sin cortarse */
+  overflow: visible;
+  margin-bottom: 60px;
+}
+
+/* Contenedor interno: Alineación a la IZQUIERDA */
+.page-hero.breadcrumb-style .hero-content {
+  width: 100%;
+  max-width: 1200px;
+  z-index: 2;
+  text-align: left; /* Texto a la izquierda */
+  padding-left: 20px;
+
+  /* Flex interno alineado al inicio (izquierda) */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.page-title {
+  color: #fff;
+  font-family: var(--font-title);
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  line-height: 1;
+}
+
+/* Título en Mayúsculas */
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Navegación (Miga de pan) */
+.breadcrumb-nav {
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  list-style: none;
+  justify-content: flex-start; /* Alineación izquierda */
+}
+
+.breadcrumb-nav li {
+  color: #f0f0f0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumb-nav li a {
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-nav li a:hover,
+.breadcrumb-nav li.active {
+  color: var(--secondary-color);
+}
+
+.breadcrumb-nav li:not(:last-child)::after {
+  content: "/";
+  margin-left: 15px;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+/* --- ICONO FLOTANTE --- */
+.breadcrumb-icon-wrap {
+  position: absolute;
+  bottom: -40px; /* Cuelga hacia afuera */
+  left: 50%;
+
+  /* REGLA SOLICITADA: Desplazamiento específico para escritorio */
+  transform: translateX(-650%);
+
+  z-index: 10;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #fff;
+  box-shadow:
+    0 0 0 1px #e0e0e0,
+    0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.icon-circle i {
+  font-size: 40px;
+  color: var(--primary-color);
+}
+
+/* --- 2. FONDO DECORATIVO --- */
+.bg-grain-pattern {
+  background-color: #fff;
+  background-image: url("../img/decoracion/grano-cafe-lineal.png");
+  background-repeat: repeat;
+  background-size: 150px;
+  background-blend-mode: overlay;
+}
+
+/* --- 3. SECCIÓN HORECA (Panaderías/Espresso) --- */
+.horeca-section {
+  background-color: #fffbf0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.horeca-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.horeca-content {
+  flex: 1;
+}
+
+.horeca-image {
+  flex: 1;
+  height: 400px;
+}
+
+.horeca-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.text-gold {
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.lead-text {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Features Horeca */
+.horeca-features {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.h-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.h-item i {
+  font-size: 2rem;
+  color: var(--primary-color);
+  background: rgba(166, 28, 34, 0.1);
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.h-item div {
+  display: flex;
+  flex-direction: column;
+}
+
+.h-item strong {
+  color: var(--text-dark);
+  font-size: 1rem;
+}
+
+.h-item span {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.mt-3 {
+  margin-top: 2rem;
+}
+
+/* --- 4. SECCIÓN PROCESOS (Grid & Cards) --- */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.process-card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  position: relative;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-bottom: 4px solid transparent;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.process-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-bottom-color: var(--secondary-color);
+}
+
+.step-number {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  opacity: 0.06;
+  font-family: var(--font-title);
+  line-height: 1;
+  z-index: 0;
+}
+
+.process-card .icon-box {
+  font-size: 3.5rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.process-card h4 {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+.process-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   MEDIA QUERIES UNIFICADOS (SERVICIOS)
+   ========================================= */
+@media (max-width: 768px) {
+  /* --- Hero Móvil --- */
+  .page-hero.breadcrumb-style {
+    height: 40vh;
+    min-height: 300px;
+  }
+
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  /* Aseguramos alineación izquierda en móvil también */
+  .page-hero.breadcrumb-style .hero-content {
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+
+  /* REGLA SOLICITADA: Resetear el icono al centro exacto en móvil */
+  .breadcrumb-icon-wrap {
+    bottom: -30px;
+    transform: translateX(-50%); /* Aquí vuelve al centro estándar */
+  }
+
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .icon-circle i {
+    font-size: 30px;
+  }
+
+  /* --- Horeca Móvil --- */
+  .horeca-wrapper {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .horeca-image {
+    height: 250px;
+    width: 100%;
+    order: -1;
+  }
+
+  /* --- Procesos Móvil --- */
+  .process-grid {
+    margin-top: 30px;
+    gap: 25px;
+  }
+
+  .process-card {
+    padding: 30px 20px;
+  }
+
+  .step-number {
+    font-size: 4rem;
+    top: -5px;
+    opacity: 0.05;
+  }
+
+  .process-card .icon-box {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+
+  .process-card h4 {
+    font-size: 1.3rem;
+  }
+}

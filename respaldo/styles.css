@@ -1066,3 +1066,250 @@ h4 {
 .menu-toggle.is-active .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
+
+/* =========================================
+   ESTILO BREADCRUMB HERO (CORREGIDO)
+   ========================================= */
+
+.page-hero.breadcrumb-style {
+  /* Dimensiones */
+  width: 100%;
+  height: 50vh; /* Altura suficiente para centrar */
+  min-height: 400px;
+
+  /* Flexbox para centrar el CONTENIDO verticalmente */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente */
+  align-items: center; /* Centra el contenedor horizontalmente */
+
+  /* Posicionamiento y Fondo */
+  position: relative;
+  background-image: url("../img/fondos/fondo-cafe-moca.jpg"); /* Asegúrate que la ruta sea correcta */
+  background-size: cover;
+  background-position: center;
+  margin-top: 0; /* Elimina márgenes extraños arriba */
+
+  /* IMPORTANTE: Permite que el icono se salga por abajo sin cortarse */
+  overflow: visible;
+  margin-bottom: 60px; /* Espacio para el icono que cuelga */
+}
+
+/* Ajuste del contenedor interno para alineación a la IZQUIERDA */
+.page-hero.breadcrumb-style .hero-content {
+  width: 100%;
+  max-width: 1200px; /* Coincide con tu variable --max-width */
+  z-index: 2;
+  text-align: left; /* Alineación del texto a la izquierda */
+  padding-left: 20px; /* Margen de seguridad en móviles */
+
+  /* Aseguramos que los hijos (ul) se alineen a la izquierda */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Fuerza todo a la izquierda */
+}
+
+/* Título MAQUILA */
+.page-hero .page-title {
+  color: #ffffff;
+  font-family: var(--font-title);
+  font-size: 4rem; /* Grande como en la referencia */
+  font-weight: 700;
+  margin-bottom: 5px; /* Poco espacio entre título y breadcrumb */
+  line-height: 1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Lista de navegación */
+.breadcrumb-nav {
+  display: flex;
+  gap: 15px;
+  padding: 0;
+  list-style: none;
+
+  /* ALINEACIÓN IZQUIERDA */
+  justify-content: flex-start;
+}
+
+.breadcrumb-nav li {
+  color: #f0f0f0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.breadcrumb-nav li a {
+  color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-nav li a:hover,
+.breadcrumb-nav li.active {
+  color: var(--secondary-color); /* Dorado */
+}
+
+.breadcrumb-nav li:not(:last-child)::after {
+  content: "/";
+  margin-left: 15px;
+  color: var(--secondary-color);
+}
+
+/* --- ICONO FLOTANTE (CENTRADO ABAJO) --- */
+.breadcrumb-icon-wrap {
+  position: absolute;
+  bottom: -40px; /* Cuelga hacia afuera */
+  left: 50%;
+  transform: translateX(-650%); /* Centrado absoluto horizontal */
+  z-index: 10;
+}
+
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 0 5px rgba(255, 255, 255, 0.3),
+    /* Efecto de doble borde transparente */ 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.icon-circle i {
+  font-size: 40px;
+  color: var(--primary-color);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .page-hero .page-title {
+    font-size: 2.8rem;
+  }
+
+  /* En móvil a veces se ve mejor centrado, pero si quieres mantener izquierda: */
+  .page-hero.breadcrumb-style .hero-content {
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  .breadcrumb-icon-wrap {
+    transform: translateX(-50%); /* Centrado absoluto horizontal */
+  }
+}
+/* =========================================
+   ESTILOS FALTANTES: SECCIÓN PROCESOS
+   ========================================= */
+
+/* Contenedor de Cuadrícula (Grid) */
+.process-grid {
+  display: grid;
+  /* Crea columnas automáticas que no sean menores a 260px */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+/* Tarjeta Individual */
+.process-card {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  position: relative; /* Necesario para posicionar el número de fondo */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  border-bottom: 4px solid transparent; /* Borde invisible listo para el hover */
+  transition: all 0.3s ease;
+  overflow: hidden; /* Corta el número si se sale de la tarjeta */
+  height: 100%; /* Asegura que todas las tarjetas tengan la misma altura */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Efecto Hover (al pasar el mouse) */
+.process-card:hover {
+  transform: translateY(-10px); /* Sube un poco */
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-bottom-color: var(--secondary-color); /* Aparece borde dorado abajo */
+}
+
+/* Número de Fondo Gigante (01, 02...) */
+.step-number {
+  position: absolute;
+  top: -10px;
+  right: -5px;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--primary-color);
+  opacity: 0.06; /* Muy transparente para que sea sutil */
+  font-family: var(--font-title);
+  line-height: 1;
+  z-index: 0; /* Se queda al fondo */
+}
+
+/* Icono (Caja, Fuego, Engranaje...) */
+.process-card .icon-box {
+  font-size: 3.5rem;
+  color: var(--primary-color); /* Rojo Institucional */
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1; /* Encima del número */
+}
+
+/* Título de la tarjeta (Recepción, Tostado...) */
+.process-card h4 {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Texto descriptivo */
+.process-card p {
+  font-size: 0.95rem;
+  color: #666; /* Gris suave para lectura */
+  line-height: 1.6;
+  position: relative;
+  z-index: 1;
+}
+/* =========================================
+   MEDIA QUERY: AJUSTES PROCESOS (MÓVIL)
+   ========================================= */
+@media (max-width: 768px) {
+  /* Reducimos la separación del grid */
+  .process-grid {
+    margin-top: 30px;
+    gap: 25px; /* Menos espacio entre tarjetas */
+  }
+
+  /* Tarjetas más compactas para aprovechar pantalla */
+  .process-card {
+    padding: 30px 20px; /* Menos padding lateral */
+  }
+
+  /* Reducimos el número gigante de fondo */
+  .step-number {
+    font-size: 4rem; /* De 5rem a 4rem */
+    top: -5px;
+    opacity: 0.05; /* Aún más sutil en móvil */
+  }
+
+  /* Icono ligeramente más pequeño */
+  .process-card .icon-box {
+    font-size: 3rem;
+    margin-bottom: 15px;
+  }
+
+  /* Ajuste de título */
+  .process-card h4 {
+    font-size: 1.3rem;
+  }
+}
