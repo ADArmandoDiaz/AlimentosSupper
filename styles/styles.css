@@ -148,12 +148,6 @@ h6 {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Breakpoint Desktop para utilidades */
-@media (min-width: 1024px) {
-  .section-padding {
-    padding: 80px 0;
-  }
-}
 /* =========================================
    3. HEADER / NAVEGACIÓN
    ========================================= */
@@ -267,68 +261,6 @@ h6 {
   border-radius: 2px;
 }
 
-/* =========================================
-   MEDIA QUERY: HEADER MÓVIL (< 768px)
-   ========================================= */
-@media (max-width: 768px) {
-  /* Mostrar icono hamburguesa */
-  .menu-toggle {
-    display: flex;
-  }
-
-  /* Transformar navegación en panel desplegable */
-  .main-nav {
-    position: absolute;
-    top: 100%; /* Justo debajo del header */
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-color);
-    padding: 20px 0;
-
-    /* Estado inicial: Oculto */
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none; /* Evita clicks cuando está oculto */
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  /* Estado Activo (Se activará con JS agregando la clase .active) */
-  .main-nav.active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
-  }
-
-  .main-nav ul {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .main-nav a {
-    display: block;
-    font-size: 1.1rem;
-    padding: 10px 0;
-  }
-
-  /* Ajuste botón contacto en móvil */
-  .main-nav .btn-contact {
-    display: inline-block;
-    margin-top: 10px;
-  }
-
-  /* Animación Hamburguesa a "X" */
-  .menu-toggle.is-active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .menu-toggle.is-active .bar:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle.is-active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-}
 /* =========================================
    4. HERO SLIDER (CORREGIDO PARA SLIDE 1)
    ========================================= */
@@ -455,7 +387,7 @@ h6 {
   transform-origin: bottom center;
   /* transform: translateY(100);*/
   padding-bottom: 100px;
-  transform: scale(1.15);
+  transform: scale(1.05);
 }
 
 /* Ajuste de Título para Slide 1 (Para que no ocupe tanto) */
@@ -782,404 +714,108 @@ h6 {
 .specs li strong {
   color: var(--primary-color);
 }
-
 /* =========================================
-   MEDIA QUERIES (LÓGICA RESPONSIVE)
+   6. PRODUCTOS (CATÁLOGO ZIG-ZAG OPTIMIZADO)
    ========================================= */
 
-/* 1. LÓGICA ZIG-ZAG (SOLO ESCRITORIO - Mayor a 768px)
-   Esto evita que el row-reverse afecte al móvil. */
-@media (min-width: 769px) {
-  .product-row:nth-child(even) {
-    flex-direction: row-reverse;
-  }
+/* --- Estilos Generales / Base --- */
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 15px;
 }
 
-/* 2. OPTIMIZACIÓN MÓVIL (Menor a 768px)
-   Aquí forzamos el orden correcto y ajustamos tamaños. */
-@media (max-width: 768px) {
-  .products-list {
-    gap: 50px; /* Reducimos el espacio entre productos */
-  }
-
-  .product-row {
-    /* Forzamos columna. Como en tu HTML la imagen está primero, 
-       automáticamente quedará arriba y el texto abajo. */
-    flex-direction: column !important;
-    gap: 20px;
-  }
-
-  /* CRÍTICO: Ajuste del contenedor de imagen */
-  .product-img-col {
-    width: 100%;
-    height: auto; /* Quitamos los 400px fijos */
-    aspect-ratio: 4/3; /* Mantiene una proporción rectangular elegante */
-    padding: 20px;
-  }
-
-  /* Ajustes de tipografía para pantallas pequeñas */
-  .section-title h3 {
-    font-size: 1.8rem;
-  }
-
-  .product-text-col {
-    padding: 0 10px; /* Menos padding lateral */
-    text-align: center; /* Opcional: Centrar textos en móvil suele verse mejor */
-  }
-
-  .product-text-col p {
-    text-align: left; /* Mantenemos lectura izquierda para párrafos */
-    font-size: 0.95rem;
-  }
-
-  .product-text-col h4 {
-    font-size: 1.6rem;
-  }
-}
-/* =========================================
-   7. CONTACTO (UX/UI MEJORADO)
-   ========================================= */
-.contact-section {
-  background-color: #f4f4f4;
-  background: linear-gradient(135deg, #f9f9f9 0%, #e8e4db 100%);
-  padding: 100px 0;
+.section-title h3 {
+  font-size: 2.5rem;
+  color: var(--primary-color);
 }
 
-.contact-wrapper {
-  display: flex;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
-  max-width: 1000px;
-  margin: 0 auto;
-  /* Transición suave para cambios de tamaño */
-  transition: all 0.3s ease;
-}
-
-/* --- COLUMNA IZQUIERDA (INFO) --- */
-.contact-info {
-  flex: 1;
-  background-color: var(--primary-color);
-  color: #fff;
-  padding: 50px;
-  position: relative;
-  overflow: hidden;
+.products-list {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 80px;
+  margin-top: 40px;
 }
 
-/* Patrón de fondo */
-.contact-info::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0PSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNiMzIwMjUiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+Cjwvc3ZnPg==");
-  opacity: 0.3;
-  z-index: 0;
-}
-
-.contact-info h3,
-.contact-info p,
-.contact-info ul {
-  position: relative;
-  z-index: 1;
-}
-
-.info-title {
-  font-size: 2rem;
-  color: var(--secondary-color);
-  margin-bottom: 20px;
-}
-
-.info-text {
-  font-size: 1rem;
-  opacity: 0.9;
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-.info-details {
-  list-style: none;
-  padding: 0;
-}
-
-.info-details li {
+.product-row {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  font-size: 1rem;
+  justify-content: space-between;
+  gap: 50px;
 }
 
-.info-details li i {
-  font-size: 1.5rem;
+/* --- Estilos de la Columna de Imagen (ESCRITORIO) --- */
+.product-img-col {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  /* Altura base para escritorio */
+  height: 400px;
+}
+
+.product-img-col img {
+  max-width: 100%;
+  max-height: 100%;
+  /* 'contain' asegura que la imagen entera se vea sin cortarse */
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.product-row:hover .product-img-col img {
+  transform: scale(1.05);
+}
+
+/* --- Estilos de la Columna de Texto --- */
+.product-text-col {
+  flex: 1;
+  padding: 20px;
+}
+
+.product-text-col h4 {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 5px;
+}
+
+.product-text-col .subtitle {
+  font-size: 1.1rem;
   color: var(--secondary-color);
-  margin-right: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px;
-  border-radius: 50%;
-}
-
-.info-decoration {
-  position: absolute;
-  bottom: -30px;
-  right: -30px;
-  opacity: 0.1;
-  z-index: 0;
-}
-
-.info-decoration i {
-  font-size: 15rem;
-  color: #fff;
-}
-
-/* --- COLUMNA DERECHA (FORMULARIO) --- */
-.contact-form {
-  flex: 1.5;
-  padding: 50px;
-  background-color: #fff;
-}
-
-.form-title {
-  color: var(--primary-color);
-  font-size: 1.8rem;
-  margin-bottom: 30px;
-}
-
-/* Grid para inputs (Nombre / Teléfono) */
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-.form-group {
-  margin-bottom: 25px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
   font-weight: 600;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-family: inherit;
-  font-size: 0.95rem; /* Tamaño base escritorio */
-  background-color: #fafafa;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(179, 32, 37, 0.1);
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  font-weight: 700;
-  padding: 15px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
+  margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
 }
 
-.btn-block:hover {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+.product-text-col p {
+  font-size: 1.05rem;
+  color: #555;
+  margin-bottom: 25px;
+  line-height: 1.8;
+  text-align: justify;
 }
 
-/* =========================================
-   MEDIA QUERIES (OPTIMIZACIÓN MÓVIL)
-   ========================================= */
-@media (max-width: 768px) {
-  .contact-section {
-    padding: 60px 0; /* Menos padding vertical en la sección general */
-  }
-
-  .contact-wrapper {
-    flex-direction: column; /* Apilar tarjeta */
-
-    /* CRÍTICO: Márgenes laterales para evitar corte de sombra */
-    width: auto;
-    margin: 0 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra más ligera en móvil */
-  }
-
-  /* Reducción de Padding interno para ganar espacio */
-  .contact-info,
-  .contact-form {
-    padding: 30px 25px;
-  }
-
-  /* Ajuste del título */
-  .info-title,
-  .form-title {
-    font-size: 1.6rem;
-    text-align: center;
-  }
-
-  .info-text {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-
-  /* Reordenar items de contacto para centrarlos visualmente */
-  .info-details li {
-    justify-content: center; /* Opcional: centrar info si gusta */
-  }
-
-  /* GRID: Apilar inputs en una sola columna */
-  .form-row {
-    grid-template-columns: 1fr;
-    gap: 0; /* El gap lo maneja el margin-bottom del form-group */
-  }
-
-  /* UX: Prevenir Zoom en iPhone */
-  .form-group input,
-  .form-group textarea {
-    font-size: 16px !important; /* Mínimo 16px para evitar zoom nativo de iOS */
-    padding: 14px; /* Zona de toque un poco más grande */
-  }
-
-  /* Decoración: Ocultar o reducir si molesta, aquí la reducimos */
-  .info-decoration {
-    opacity: 0.05;
-    bottom: -10px;
-    right: -10px;
-  }
+.specs {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  margin-top: 10px;
 }
-/* ======================================
-   MEDIA QUERY: SLIDER MÓVIL (< 768px)
-   ========================================= */
-@media (max-width: 768px) {
-  .hero-slider {
-    height: 100vh;
-    min-height: auto;
-  }
 
-  .slide-content,
-  .slide.slide-vertical .slide-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
-    padding-top: 80px;
-    gap: 20px;
-  }
-
-  .slide-text-col,
-  .slide-image-col {
-    width: 100%;
-  }
-
-  /* Restauramos tamaño original de logo y titulo en móvil */
-  .slide-top-content .slide-text h2 {
-    font-size: 2.2rem;
-  }
-  .hero-logo-large {
-    width: 220px;
-  }
-
-  .slide-text-col h2,
-  .slide-text h2 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-  }
-  .slide-text-col p,
-  .slide-text p {
-    font-size: 1rem;
-    margin-bottom: 25px;
-  }
-
-  .slide-image-col {
-    margin-top: 20px;
-  }
-  .slide-product-img {
-    max-height: 280px;
-  }
-
-  .hero-product-img {
-    max-height: 35vh;
-    margin-bottom: 60px;
-    transform: scale(1);
-    padding-bottom: 0px;
-    src: url("/img/productos/all-food-recortada.PNG");
-  }
-
-  .slide-bottom-content {
-    margin-top: 0;
-  }
-
-  .slider-btn {
-    padding: 15px 20px;
-    background: rgba(0, 0, 0, 0.3);
-  }
-  /* --- Ajustes Secciones Generales (Nosotros & Features) --- */
-  .section-padding {
-    padding: 40px 0; /* Padding reducido en móvil */
-  }
-
-  /* Nosotros */
-  .grid-2-col {
-    grid-template-columns: 1fr; /* 1 Columna */
-    text-align: center; /* Texto centrado se ve mejor en móvil */
-    gap: 40px;
-  }
-
-  .about-image {
-    margin-top: 20px;
-    order: -1; /* Opcional: Si quisieras la imagen primero, pon -1. Si no, quítalo */
-  }
-
-  .about-image img {
-    max-width: 80%; /* Un poco más pequeño para que no abrume */
-    box-shadow: 5px 5px 0px var(--secondary-color); /* Sombra más sutil */
-  }
-
-  /* Features */
-  .features-section {
-    padding: 60px 0;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr; /* Fuerza 1 columna en móviles */
-    gap: 20px;
-  }
-
-  .feature-card {
-    padding: 30px 20px;
-  }
+.specs li {
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #333;
 }
+
+.specs li strong {
+  color: var(--primary-color);
+}
+
 /* =========================================
    8. FOOTER (OPTIMIZADO RESPONSIVE)
    ========================================= */
@@ -1315,50 +951,6 @@ h6 {
   color: #fff;
 }
 
-/* =========================================
-   MEDIA QUERIES (OPTIMIZACIÓN FINAL MÓVIL)
-   ========================================= */
-@media (max-width: 768px) {
-  .site-footer {
-    padding-top: 50px; /* Reducimos espacio vertical */
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr; /* Una columna */
-    gap: 40px;
-    text-align: center; /* Todo centrado */
-  }
-
-  /* Centrar Logo */
-  .footer-logo {
-    margin: 0 auto 20px auto;
-  }
-
-  /* Centrar Línea Decorativa */
-  .footer-col h4::after {
-    left: 50%;
-    transform: translateX(-50%); /* Truco matemático para centro absoluto */
-  }
-
-  /* Centrar Iconos Sociales */
-  .social-links {
-    justify-content: center;
-  }
-
-  /* Centrar Info de Contacto */
-  .contact-info p {
-    justify-content: center;
-  }
-
-  /* Ajuste de enlaces en móvil para que no se vean raros al hacer hover */
-  .footer-col ul li {
-    justify-content: center;
-  }
-
-  .footer-col ul li a:hover {
-    transform: translateX(0) scale(1.05); /* Cambiamos desplazamiento por zoom sutil en móvil */
-  }
-}
 /* =============================================================
    ESTILOS UNIFICADOS: PÁGINA SERVICIOS (MAQUILA, HORECA, PROCESOS)
    ============================================================= */
@@ -1649,74 +1241,768 @@ h6 {
 }
 
 /* =========================================
-   MEDIA QUERIES UNIFICADOS (SERVICIOS)
+   7. CONTACTO MAESTRO (UNIFICADO)
    ========================================= */
+.contact-section {
+  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #f9f9f9 0%, #e8e4db 100%);
+  padding: 100px 0;
+}
+
+.contact-wrapper {
+  display: flex;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+/* --- COLUMNA IZQUIERDA (INFO) --- */
+.contact-info {
+  flex: 1;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Patrón de fondo (Dots) */
+.contact-info::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0PSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiNiMzIwMjUiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIj48L3JlY3Q+Cjwvc3ZnPg==");
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.contact-info h3,
+.contact-info p,
+.contact-info ul {
+  position: relative;
+  z-index: 1;
+}
+
+.info-title {
+  font-size: 2rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+.info-text {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.info-details {
+  list-style: none;
+  padding: 0;
+}
+
+.info-details li {
+  display: flex;
+  align-items: flex-start; /* Alineación superior para textos largos */
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.info-details li i {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  margin-right: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 50%;
+  margin-top: -5px; /* Pequeño ajuste óptico */
+}
+
+.info-decoration {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.info-decoration i {
+  font-size: 15rem;
+  color: #fff;
+}
+
+/* --- COLUMNA DERECHA (FORMULARIO) --- */
+.contact-form {
+  flex: 1.5;
+  padding: 50px;
+  background-color: #fff;
+}
+
+.form-title {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+/* Sistema de Grid para Inputs */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px; /* Margen inferior para separar filas */
+}
+
+/* Quitamos el margin-bottom individual de form-group dentro de form-row para usar el gap */
+.form-row .form-group {
+  margin-bottom: 0;
+}
+
+.form-group {
+  margin-bottom: 25px; /* Para inputs que no están en row (como el textarea) */
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* --- ESTILO UNIFICADO: INPUTS, TEXTAREA Y SELECT --- */
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: var(--font-main); /* Asegura misma fuente */
+  font-size: 0.95rem;
+  background-color: #fafafa;
+  color: #333;
+  transition: all 0.3s ease;
+
+  /* Reset para Select en navegadores (opcional, mejora consistencia) */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Recreamos la flecha del Select porque usamos appearance:none */
+.form-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a61c22' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+}
+
+/* Efecto Focus para todos */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(166, 28, 34, 0.1); /* Usando el rojo institucional */
+}
+
+/* Botón de Enviar */
+.btn-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: 700;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn-block:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================================
+   9. GALERÍA DE IMÁGENES (CON SEPARADOR)
+   ========================================= */
+
+/* --- NUEVO: Estilo del Separador de Título --- */
+.title-separator-img {
+  display: block; /* Para poder usar margen automático y centrarla */
+  margin: 15px auto 25px; /* Centrado horizontal + espaciado vertical */
+  max-width: 180px; /* Un tamaño prudente, ajustable según tu gusto */
+  height: auto; /* Mantiene la proporción */
+}
+
+/* --- Estilos de la Galería (Igual que antes) --- */
+.gallery-section {
+  background-color: #ffffff;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.gallery-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(166, 28, 34, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+
+  /* AGREGA ESTA LÍNEA MÁGICA: */
+  pointer-events: none;
+}
+
+.gallery-overlay i {
+  color: var(--secondary-color);
+  font-size: 3rem;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.15);
+}
+
+.gallery-item:hover .gallery-overlay {
+  opacity: 1;
+}
+
+.gallery-item:hover .gallery-overlay i {
+  transform: scale(1);
+}
+
+/* =========================================
+   ESTILOS DEL LIGHTBOX (VISOR)
+   ========================================= */
+.lightbox-modal {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Se queda fijo en la pantalla */
+  z-index: 9999; /* Encima de todo */
+  padding-top: 50px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9); /* Fondo negro oscuro */
+  backdrop-filter: blur(5px); /* Efecto borroso elegante detrás */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* La imagen dentro del visor */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 900px; /* Que no sea gigante en pantallas ultra anchas */
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+  animation: zoom 0.3s; /* Animación de entrada */
+}
+
+/* Botón de Cerrar (X) */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: var(--secondary-color); /* Dorado al pasar el mouse */
+  text-decoration: none;
+  cursor: pointer;
+}
+/* Animación de Zoom */
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* ==========================================================================
+   BLOQUE MAESTRO DE MEDIA QUERIES (ORGANIZADO, CENTRALIZADO Y CORREGIDO)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESKTOP / PANTALLAS GRANDES (min-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 80px 0;
+  }
+
+  /* Ajuste Galería Desktop */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. TABLET / ESCRITORIO PEQUEÑO (min-width: 769px)
+   -------------------------------------------------------------------------- */
+/* Lógica Zig-Zag para Productos (Solo aplica si NO es móvil) */
+@media (min-width: 769px) {
+  .product-row:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. TABLET Y MÓVIL (max-width: 768px) - EL GRAN BLOQUE
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  /* --- Hero Móvil --- */
+  /* === HEADER & NAVEGACIÓN === */
+  .menu-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    padding: 20px 0;
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .main-nav.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .main-nav a {
+    display: block;
+    font-size: 1.1rem;
+    padding: 10px 0;
+  }
+
+  .main-nav .btn-contact {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* === HOME: SLIDER === */
+  .hero-slider {
+    height: 100vh;
+    min-height: auto;
+  }
+
+  .slide-content,
+  .slide.slide-vertical .slide-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    padding-top: 80px;
+    gap: 20px;
+  }
+
+  .slide-text-col,
+  .slide-image-col {
+    width: 100%;
+  }
+
+  .slide-top-content .slide-text h2 {
+    font-size: 2.2rem;
+  }
+  .hero-logo-large {
+    width: 220px;
+  }
+
+  .slide-text-col h2,
+  .slide-text h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+  }
+
+  .slide-text-col p,
+  .slide-text p {
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .slide-image-col {
+    margin-top: 20px;
+  }
+  .slide-product-img {
+    max-height: 280px;
+  }
+  .slide-product-img-correccion {
+    padding-bottom: 50px;
+    transform: scale(1.15);
+  }
+
+  .hero-product-img {
+    max-height: 35vh;
+    margin-bottom: 60px;
+    transform: scale(1);
+    padding-bottom: 0px;
+  }
+
+  .slide-bottom-content {
+    margin-top: 0;
+  }
+  .slider-btn {
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  /* === SECCIONES GENERALES (Padding, Nosotros, Features) === */
+  .section-padding {
+    padding: 40px 0;
+  }
+
+  /* Corrección Sección Nosotros (Imagen abajo) */
+  .grid-2-col {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .about-image {
+    margin-top: 20px;
+    order: -1; /* Opcional: Tu configuración original */
+  }
+
+  .about-image img {
+    max-width: 80%;
+    box-shadow: 5px 5px 0px var(--secondary-color);
+  }
+
+  /* Features */
+  .features-section {
+    padding: 60px 0;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .feature-card {
+    padding: 30px 20px;
+  }
+
+  /* === CATÁLOGO DE PRODUCTOS (Corrección de Altura y Uniformidad) === */
+  .products-list {
+    gap: 60px;
+  }
+
+  .product-row {
+    flex-direction: column !important;
+    gap: 25px;
+  }
+
+  .product-img-col {
+    width: 100%;
+    /* CAMBIO: Altura reducida para que no se vean gigantes */
+    height: 220px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff; /* Asegura fondo blanco */
+    border-radius: 12px;
+  }
+
+  /* CAMBIO: Asegura que la imagen respete el espacio y no se deforme */
+  .product-img-col img {
+    max-height: 100%; /* No más altas que el contenedor */
+    max-width: 85%; /* Deja un margen lateral para que se vea aireada */
+    width: auto; /* Mantiene proporción */
+    object-fit: contain; /* Se ajusta dentro sin recortarse */
+  }
+
+  .section-title h3 {
+    font-size: 1.8rem;
+  }
+  .product-text-col {
+    padding: 0 5px;
+    text-align: center;
+  }
+  .product-text-col p {
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  .product-text-col h4 {
+    font-size: 1.6rem;
+  }
+
+  /* === FOOTER === */
+  .site-footer {
+    padding-top: 50px;
+  }
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+  .footer-logo {
+    margin: 0 auto 20px auto;
+  }
+  .footer-col h4::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .social-links,
+  .contact-info p,
+  .footer-col ul li {
+    justify-content: center;
+  }
+  .footer-col ul li a:hover {
+    transform: translateX(0) scale(1.05);
+  }
+
+  /* === PÁGINA SERVICIOS (Maquila & Horeca) === */
   .page-hero.breadcrumb-style {
     height: 40vh;
     min-height: 300px;
   }
-
   .page-title {
     font-size: 2.5rem;
   }
 
-  /* Aseguramos alineación izquierda en móvil también */
   .page-hero.breadcrumb-style .hero-content {
     align-items: flex-start;
     padding-left: 20px;
   }
 
-  /* REGLA SOLICITADA: Resetear el icono al centro exacto en móvil */
   .breadcrumb-icon-wrap {
     bottom: -30px;
-    transform: translateX(-50%); /* Aquí vuelve al centro estándar */
+    transform: translateX(-50%); /* Centrado exacto en móvil */
   }
 
   .icon-circle {
     width: 60px;
     height: 60px;
   }
-
   .icon-circle i {
     font-size: 30px;
   }
 
-  /* --- Horeca Móvil --- */
   .horeca-wrapper {
     flex-direction: column;
     padding: 20px;
   }
-
   .horeca-image {
     height: 250px;
     width: 100%;
     order: -1;
   }
 
-  /* --- Procesos Móvil --- */
   .process-grid {
     margin-top: 30px;
     gap: 25px;
   }
-
   .process-card {
     padding: 30px 20px;
   }
-
   .step-number {
     font-size: 4rem;
     top: -5px;
     opacity: 0.05;
   }
-
   .process-card .icon-box {
     font-size: 3rem;
     margin-bottom: 15px;
   }
-
   .process-card h4 {
     font-size: 1.3rem;
+  }
+
+  /* === SECCIÓN CONTACTO (Formulario Unificado) === */
+  .contact-section {
+    padding: 60px 0;
+  }
+  .contact-wrapper {
+    flex-direction: column;
+    width: auto;
+    margin: 0 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+  .contact-info,
+  .contact-form {
+    padding: 30px 25px;
+  }
+  .info-title,
+  .form-title {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  .info-text {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  /* Romper Grid Inputs */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0;
+  }
+  .form-row .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 16px !important; /* Anti-zoom iOS */
+    padding: 14px;
+  }
+  .info-decoration {
+    display: none;
+  }
+
+  /* === GALERÍA & LIGHTBOX (Estilo Mosaico Edge-to-Edge) === */
+
+  /* 1. Truco para que toque los bordes: Quitamos padding al contenedor solo aquí */
+  .gallery-section .container {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: 100%;
+  }
+
+  /* 2. Pero le devolvemos el padding al Título para que el texto NO toque los bordes */
+  .gallery-section .section-title {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  /* 3. El Grid: 3 columnas apretadas */
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 Columnas exactas */
+    gap: 3px; /* Espacio blanco muy fino entre fotos (como en tu referencia) */
+  }
+
+  /* 4. Estilo de las fotos: Cuadradas y sin bordes redondos */
+  .gallery-item {
+    aspect-ratio: 1/1; /* Cuadrados perfectos */
+    border-radius: 0; /* Quitamos bordes redondos para que se vea pegado */
+    box-shadow: none; /* Quitamos sombra para que se vea plano y limpio */
+  }
+
+  /* Ajuste del separador */
+  .title-separator-img {
+    max-width: 140px;
+    margin: 10px auto 20px;
+  }
+
+  /* Ajuste del Modal (Lightbox) */
+  .modal-content {
+    width: 95%;
+  }
+}
+/* --------------------------------------------------------------------------
+   4. MÓVIL PEQUEÑO (max-width: 480px) - AJUSTES FINALES
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .gallery-grid {
+    /* CAMBIO: 2 columnas en lugar de 1. Así se ven dos fotos por fila (estilo Instagram) */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px; /* Espacio aún más pequeño */
+  }
+
+  .gallery-item {
+    /* Forzamos que sigan siendo cuadradas */
+    aspect-ratio: 1/1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. ANIMACIONES (Keyframes)
+   -------------------------------------------------------------------------- */
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
   }
 }
