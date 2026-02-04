@@ -967,7 +967,7 @@ h6 {
   align-items: center;
 
   position: relative;
-  background-image: url("../img/fondos/fondo-cafe-moca.jpg"); /* Verifica tu ruta */
+  background-image: url("../img/fondos/fondo-cafe-moca.webp"); /* Verifica tu ruta */
   background-size: cover;
   background-position: center;
   margin-top: 0;
