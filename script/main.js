@@ -34,10 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function goToSlide(n) {
       slides.forEach((slide) => {
         slide.classList.remove("active");
-        // Reinicio de animación CSS
         slide.style.display = "none";
-        slide.offsetHeight;
-        slide.style.display = "";
+        slide.style.display = ""; // Hack para reiniciar animación si es CSS
       });
 
       currentSlide = (n + slides.length) % slides.length;
@@ -109,58 +107,99 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* =========================================
-     5. VALIDACIÓN DE FORMULARIO
-     ========================================= */
-  const contactForm = document.querySelector("form");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      const nombreInput = document.getElementById("nombre");
-      const emailInput = document.getElementById("email");
-
-      // Validación simple solo si los campos existen
-      if (nombreInput && emailInput) {
-        const nombre = nombreInput.value;
-        const email = emailInput.value;
-
-        if (nombre.length < 3 || !email.includes("@")) {
-          e.preventDefault();
-          alert("Por favor, ingresa un nombre válido y un correo electrónico.");
-        }
-      }
-    });
-  }
-
-  /* =========================================
-     6. LÓGICA DEL LIGHTBOX (GALERÍA)
+     5. LÓGICA DEL LIGHTBOX (GALERÍA)
      ========================================= */
   const modal = document.getElementById("imageModal");
   const modalImg = document.getElementById("img01");
   const closeBtn = document.querySelector(".close-btn");
   const galleryImages = document.querySelectorAll(".gallery-item img");
 
-  // Verificamos si los elementos existen para evitar errores en páginas sin galería
   if (modal && modalImg && galleryImages.length > 0) {
-    // Abrir modal al hacer clic en la imagen
     galleryImages.forEach((img) => {
       img.addEventListener("click", function () {
         modal.style.display = "flex";
         modalImg.src = this.src;
-        console.log("Imagen clickeada:", this.src);
       });
     });
 
-    // Cerrar con la X
     if (closeBtn) {
       closeBtn.onclick = function () {
         modal.style.display = "none";
       };
     }
 
-    // Cerrar al hacer clic fuera de la imagen (fondo oscuro)
     window.onclick = function (event) {
       if (event.target == modal) {
         modal.style.display = "none";
       }
     };
+  }
+
+  /* =========================================
+     6. FORMULARIO: NETLIFY FORMS + SWEETALERT
+     ========================================= */
+  const contactForm = document.getElementById("contactForm");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault(); // Evita recarga
+
+      // 1. Validación Básica
+      const nombreInput = document.getElementById("nombre");
+      const emailInput = document.getElementById("email");
+
+      if (nombreInput && emailInput) {
+        if (nombreInput.value.length < 3 || !emailInput.value.includes("@")) {
+          Swal.fire({
+            icon: "warning",
+            title: "Datos incompletos",
+            text: "Por favor, ingresa un nombre válido y un correo electrónico.",
+            confirmButtonColor: "#a61c22",
+          });
+          return;
+        }
+      }
+
+      // 2. Animación de "Cargando"
+      Swal.fire({
+        title: "Enviando...",
+        text: "Por favor espera un momento",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
+      const formData = new FormData(this);
+
+      // 3. Envío a Netlify (Fetch a la raíz '/')
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+      })
+        .then(() => {
+          // 4. Éxito
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "¡Mensaje Enviado con Éxito!",
+            text: "Gracias por contactarnos. Te responderemos a la brevedad.",
+            showConfirmButton: false,
+            timer: 2500,
+          });
+          contactForm.reset();
+        })
+        .catch((error) => {
+          // 5. Error
+          console.error("Error Netlify:", error);
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Hubo un problema al enviar el mensaje. Intenta de nuevo.",
+            confirmButtonColor: "#a61c22",
+          });
+        });
+    });
   }
 });
